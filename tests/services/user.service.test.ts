@@ -16,6 +16,7 @@ import {
   deleteEmergencyContact,
   deleteUserProfile,
   doesUserExist,
+  DuplicateContactError,
   getEmergencyContacts,
   getUserProfile,
   reorderEmergencyContacts,
@@ -41,6 +42,8 @@ jest.mock('@react-native-firebase/firestore', () => {
     updateDoc: jest.fn(() => Promise.resolve()),
     deleteDoc: jest.fn(() => Promise.resolve()),
     query: jest.fn((ref: unknown) => ref),
+    where: jest.fn(() => ({})),
+    limit: jest.fn(() => ({})),
     orderBy: jest.fn((field: string, direction: string) => ({ field, direction })),
     writeBatch: jest.fn(() => batch),
     serverTimestamp: jest.fn(() => ({ __serverTimestamp: true })),
@@ -225,6 +228,22 @@ describe('emergency contacts', () => {
       isPredefined: false,
       order: 7,
     });
+  });
+
+  it('rejects a duplicate phone without writing or leaking the number', async () => {
+    jest.mocked(getDocs).mockResolvedValueOnce({ docs: [{ id: 'existing-1' }] } as never);
+
+    const attempt = addEmergencyContact('user-1', {
+      name: 'Ma',
+      phone: '+919876543210',
+      relationship: 'Mother',
+      isPredefined: false,
+      order: 7,
+    });
+
+    await expect(attempt).rejects.toBeInstanceOf(DuplicateContactError);
+    await expect(attempt).rejects.not.toThrow('+919876543210');
+    expect(addDoc).not.toHaveBeenCalled();
   });
 
   it('updates and deletes a single contact document', async () => {
