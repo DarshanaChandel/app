@@ -1,7 +1,16 @@
+<<<<<<< Updated upstream
 apply plugin: 'com.android.library'
 apply plugin: 'expo-module-gradle-plugin'
 
 group = 'expo.modules.surakshaktnative'
+=======
+plugins {
+  id 'com.android.library'
+  id 'expo-module-gradle-plugin'
+}
+
+group = 'com.surakshak'
+>>>>>>> Stashed changes
 version = '1.0.0'
 
 android {
@@ -10,6 +19,7 @@ android {
     versionCode 1
     versionName "1.0.0"
   }
+<<<<<<< Updated upstream
   lintOptions {
     abortOnError false
   }
@@ -17,4 +27,21 @@ android {
 
 dependencies {
   implementation "androidx.core:core-ktx:1.15.0"
+=======
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
+  kotlinOptions {
+    jvmTarget = "17"
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation project(':expo-modules-core')
+>>>>>>> Stashed changes
 }
