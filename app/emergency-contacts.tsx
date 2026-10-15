@@ -2,6 +2,7 @@ import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Pressable, View } from 'react-native';
+import { DANGER_ROW_HITSLOP } from '@/constants/ui';
 
 import { ContactFormModal } from '@/components/features/emergency/ContactFormModal';
 import { DeviceContactPickerModal } from '@/components/features/emergency/DeviceContactPickerModal';
@@ -219,6 +220,7 @@ export default function EmergencyContactsScreen(): React.JSX.Element {
                 accessibilityRole="button"
                 accessibilityLabel={t('emergency.callNow')}
                 className="h-9 w-9 items-center justify-center rounded-full bg-forest-green"
+                hitSlop={12}
               >
                 <Ionicons name="call" size={ICON_SIZE.CHEVRON} color={COLORS.WHITE} />
               </Pressable>
@@ -255,6 +257,7 @@ export default function EmergencyContactsScreen(): React.JSX.Element {
                   accessibilityRole="button"
                   accessibilityLabel={t('emergency.callNow')}
                   className="h-9 w-9 items-center justify-center rounded-full bg-forest-green"
+                  hitSlop={12}
                 >
                   <Ionicons name="call" size={ICON_SIZE.CHEVRON} color={COLORS.WHITE} />
                 </Pressable>
@@ -262,6 +265,7 @@ export default function EmergencyContactsScreen(): React.JSX.Element {
                   onPress={() => confirmDelete(contact)}
                   accessibilityRole="button"
                   accessibilityLabel={t('emergency.deleteContact')}
+                  hitSlop={DANGER_ROW_HITSLOP}
                 >
                   <MaterialIcons name="delete-outline" size={ICON_SIZE.ROW} color={COLORS.STONE} />
                 </Pressable>
