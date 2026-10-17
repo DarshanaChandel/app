@@ -2,8 +2,6 @@ import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Pressable, View } from 'react-native';
-import { DANGER_ROW_HITSLOP } from '@/constants/ui';
-
 import { ContactFormModal } from '@/components/features/emergency/ContactFormModal';
 import { DeviceContactPickerModal } from '@/components/features/emergency/DeviceContactPickerModal';
 import { Button } from '@/components/ui/Button';
@@ -16,7 +14,7 @@ import { Text } from '@/components/ui/Text';
 import { captureException } from '@/config/sentry';
 import { COLORS } from '@/constants/colors';
 import { PREDEFINED_EMERGENCY_NUMBERS } from '@/constants/emergency-numbers';
-import { ICON_SIZE } from '@/constants/ui';
+import { DANGER_ROW_HITSLOP, ICON_SIZE } from '@/constants/ui';
 import {
   trackEmergencyCallPlaced,
   trackEmergencyContactChange,
