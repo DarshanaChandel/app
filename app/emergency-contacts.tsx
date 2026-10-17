@@ -2,6 +2,7 @@ import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Pressable, View } from 'react-native';
+
 import { ContactFormModal } from '@/components/features/emergency/ContactFormModal';
 import { DeviceContactPickerModal } from '@/components/features/emergency/DeviceContactPickerModal';
 import { Button } from '@/components/ui/Button';
